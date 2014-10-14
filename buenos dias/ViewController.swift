@@ -44,7 +44,7 @@ class ViewController: UITableViewController, NSNetServiceBrowserDelegate, NSNetS
 
     
     // UITableViewDataSourceDelegate
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(self.serviceList.count == 0) {
             return 1
         } else {
@@ -52,25 +52,25 @@ class ViewController: UITableViewController, NSNetServiceBrowserDelegate, NSNetS
         }
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? UITableViewCell
         
-        if !cell {
+        if !(cell != nil) {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
         }
         
         
         if(self.serviceList.count == 0) {
-            cell!.textLabel.text = "Searching"
+            cell!.textLabel!.text = "Searching"
         } else {
-            cell!.textLabel.text = self.serviceList[indexPath.row].name
+            cell!.textLabel!.text = self.serviceList[indexPath.row].name
         }
         
-        return cell
+        return cell!
     }
     
     // UITableViewDelegate
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.serviceResolver.stop()
         
         
